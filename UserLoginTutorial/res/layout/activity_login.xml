@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity" 
+    android:background="#DA5024" >
+	
+     <EditText
+        android:id="@+id/etEmailLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/enter_email"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etEmailLogin"
+        android:layout_alignLeft="@+id/etEmailLogin"
+        android:hint="@string/enter_password"
+        android:ems="10"
+        android:inputType="textPassword" />
+    
+	<TextView
+        android:id="@+id/tvErrorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" 
+        android:clickable="true" />
+	
+	<ImageButton
+        android:id="@+id/btnLoginFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/login_facebook"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/ic_launcher" />
+	
+    <ImageButton
+        android:id="@+id/btnLoginTwitter"
+        android:contentDescription="@string/login_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnLoginFacebook"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:layout_marginBottom="6dp"
+        android:src="@drawable/ic_launcher" 
+        />
+    
+    <!--<ImageButton
+        android:id="@+id/btnLoginGoogle"
+        android:contentDescription="@string/login_google"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnLoginTwitter"
+        android:layout_alignLeft="@+id/btnLogin"
+        android:src="@drawable/ic_launcher" 
+        />-->
+
+    <TextView
+        android:id="@+id/tvRegisterAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btnLogin"
+        android:layout_below="@+id/btnLogin"
+        android:layout_marginTop="37dp"
+        android:clickable="true"
+        android:text="@string/register"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvErrorMessage"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login" 
+        android:onClick="login"/>
+
+
+   
+</RelativeLayout>
