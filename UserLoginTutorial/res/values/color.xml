@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="kinvey_orange">#DA5024</color>
+    <color name="button_background">#3A3A3A</color>
+    <color name="button_foreground">#FFFFFF</color>
 </resources>

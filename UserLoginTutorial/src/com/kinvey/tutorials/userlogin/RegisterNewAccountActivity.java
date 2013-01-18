@@ -2,11 +2,11 @@ package com.kinvey.tutorials.userlogin;
 
 import com.kinvey.KCSClient;
 import com.kinvey.KinveyUser;
-import com.kinvey.tutorials.userlogin.authentication.LoginActivity;
 import com.kinvey.util.KinveyCallback;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -41,15 +41,15 @@ public class RegisterNewAccountActivity extends Activity {
 		mKinveyClient = ((UserLoginTutorial) getApplication()).getKinveyService();
 	}
 	
-	public void register(View view) {
+	public void registerAccount(View view) {
 		if (validateFields()) {
 			if (validatePasswordMatch()) {
 				processSignup(view);
 			} else {
-				// Passwords don't match
+				Toast.makeText(this, "Password doesn't match", Toast.LENGTH_SHORT).show();
 			} 
 		} else {
-			// Fields not filled in
+			Toast.makeText(this, "Fields not filled in", Toast.LENGTH_SHORT).show();
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class RegisterNewAccountActivity extends Activity {
 	}
 
 	private boolean validatePasswordMatch() {
-		if (mEditPassword.equals(mEditPasswordConfirm)) {
+		if (mEditPassword.getText().toString().equals(mEditPasswordConfirm.getText().toString())) {
 			return true;
 		} else {
 			return false;
@@ -73,20 +73,22 @@ public class RegisterNewAccountActivity extends Activity {
 	}
 
 	public void processSignup(View view) {
+		Toast.makeText(this, "Creating user...", Toast.LENGTH_SHORT).show();
 	    mKinveyClient.createUserWithUsername(mEditEmailAddress.getText().toString(), mEditPassword.getText().toString(), new KinveyCallback<KinveyUser>() {
 	        public void onFailure(Throwable t) {
 	            CharSequence text = "Could not sign up.";
 	            Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
 	        }
 	        public void onSuccess(KinveyUser u) {
-	            CharSequence text = "Welcome back," + u.getUsername() + ".";
+	            CharSequence text = "Welcome," + u.getUsername() + ".  Your account has been registered.  Please login to confirm your credentials.";
 	            u.setEmail(u.getUsername());
 	            u.setGivenName(mEditFirstName.getText().toString());
 	            u.setSurName(mEditLastName.getText().toString());
 	            
-	           // Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
-	           // LoginActivity.this.startActivity(new Intent(LoginActivity.this, SessionsActivity.class));
-	           // LoginActivity.this.finish();
+	           Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+	           RegisterNewAccountActivity.this.startActivity(new Intent(RegisterNewAccountActivity.this, LoginActivity.class));
+	           RegisterNewAccountActivity.this.finish();
+	           
 	        }
 	    });
 	}

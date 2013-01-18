@@ -66,6 +66,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="89dp"
         android:text="@string/register" 
-        android:onClick="Register" />
+        android:onClick="registerAccount" />
 
 </RelativeLayout>
