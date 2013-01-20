@@ -35,7 +35,8 @@
         android:background="@color/button_background"
         android:onClick="login"
         android:text="@string/login"
-        android:textColor="@color/button_foreground" />
+        android:textColor="@color/button_foreground" 
+        android:minWidth="96dp"/>
 
     <Button
         android:id="@+id/btnRegisterAccount"
@@ -43,6 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/etEmailLogin"
         android:layout_below="@+id/tvErrorMessage"
+        android:minWidth="96dp"
         android:background="@color/button_background"
         android:text="@string/register"
         android:textColor="@color/button_foreground" 
@@ -56,6 +58,8 @@
         android:layout_below="@+id/etEmailLogin"
         android:ems="10"
         android:hint="@string/enter_password"
+        android:textColorHint="@color/hint_color"
+        android:textColor="@color/text_color"
         android:inputType="textPassword" >
 
     
@@ -68,6 +72,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:ems="10"
+        android:textColorHint="@color/hint_color"
+        android:textColor="@color/text_color"
         android:hint="@string/enter_email"
         android:inputType="textEmailAddress" 
         android:layout_marginTop="15dp"
@@ -81,7 +87,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
         android:contentDescription="@string/login_twitter"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/sign-in-twitter" 
+        android:background="@color/kinvey_orange"/>
 
     <ImageButton
         android:id="@+id/btnLoginFacebook"
@@ -91,6 +98,7 @@
         android:layout_below="@+id/btnLoginTwitter"
         android:layout_marginTop="24dp"
         android:contentDescription="@string/login_facebook"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/sign-in-facebook"
+        android:background="@color/kinvey_orange" />
    
 </RelativeLayout>
