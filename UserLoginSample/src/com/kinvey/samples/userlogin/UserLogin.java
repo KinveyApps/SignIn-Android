@@ -13,8 +13,8 @@ public class UserLogin extends Application {
     private KCSClient service;
 
     // Enter your Kinvey app credentials
-    private static final String APP_KEY = "kid_TVZbaNqLeJ";
-    private static final String APP_SECRET = "9b259536eb2b4ddba874cc933d78a0d4";
+    private static final String APP_KEY = your_kinvey_app_key;
+    private static final String APP_SECRET = your_kinvey_app_secret;
     
     // Application Constants
     public static final String AUTHTOKEN_TYPE = "com.kinvey.myapplogin";

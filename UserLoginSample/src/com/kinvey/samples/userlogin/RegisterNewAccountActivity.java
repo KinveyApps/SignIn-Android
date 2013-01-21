@@ -45,7 +45,7 @@ public class RegisterNewAccountActivity extends Activity {
 		mKinveyClient = ((UserLogin) getApplication()).getKinveyService();
 	}
 	
-	 void registerAccount(View view) {
+	 public void registerAccount(View view) {
 		if (validateFields()) {
 			if (validatePasswordMatch()) {
 				processSignup(view);

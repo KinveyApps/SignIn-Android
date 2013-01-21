@@ -34,7 +34,7 @@ public class FacebookLoginActivity extends AccountAuthenticatorActivity {
 	/*
 	 * Facebook App ID - Specific to the applicaiton making the request.
 	 */
-	private static final String FB_APP_ID = "151732218311865";
+	private static final String FB_APP_ID = your_facebook_app_key;
 	
 	private Boolean mConfirmCredentials = false;
 	private Boolean mRequestNewAccount = true;

@@ -42,8 +42,8 @@ public class TwitterLoginActivity extends AccountAuthenticatorActivity {
 	/**
 	 * Twitter Consumer Key and Secret - Specific to the application making the request
 	 */
-	private static final String TWITTER_CONSUMER_KEY = "YOvzeuvsi3NvBRErFBBzCA";
-	private static final String TWITTER_CONSUMER_SECRET = "IC5OdCiIO4Be1TSdKKpcmproDVJLEFByxkK2l8T7Mo";
+	private static final String TWITTER_CONSUMER_KEY = your_twitter_consumer_key;
+	private static final String TWITTER_CONSUMER_SECRET = your_twitter_consumer_secret;
 	/**
 	 * The Callback URL is used by Twitter OAuth to return the authorization to this Activity.  The URL must be 
 	 * set as an intent in the Application manifest as follows:
@@ -163,7 +163,6 @@ public class TwitterLoginActivity extends AccountAuthenticatorActivity {
 		final Intent intent = new Intent();
 		intent.putExtra(AccountManager.KEY_BOOLEAN_RESULT, result);
 		setResult(RESULT_OK, intent);
-		finish();
 	}
 	
 	/**
@@ -185,7 +184,6 @@ public class TwitterLoginActivity extends AccountAuthenticatorActivity {
 		intent.putExtra(AccountManager.KEY_ACCOUNT_TYPE, UserLogin.ACCOUNT_TYPE);
 		setAccountAuthenticatorResult(intent.getExtras());
 		setResult(RESULT_OK,intent);
-		finish();
 	}
 	
 	@Override
