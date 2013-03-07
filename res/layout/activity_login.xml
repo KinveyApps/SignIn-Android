@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".LoginActivity"
+                android:background="@color/ghost_white" >
+
+    <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etPassword"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/login_spacing"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/kinvey_orange"
+            android:clickable="true" />
+
+    <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/etPassword"
+            android:layout_below="@+id/tvErrorMessage"
+            android:background="@color/kinvey_orange"
+            android:onClick="login"
+            android:text="@string/login"
+            android:textColor="@color/ghost_white"
+            android:minWidth="@dimen/button_min_width"
+            android:layout_marginLeft="@dimen/button_margin"/>
+
+    <Button
+            android:id="@+id/btnRegisterAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/etEmailLogin"
+            android:layout_below="@+id/tvErrorMessage"
+            android:minWidth="@dimen/button_min_width"
+            android:background="@color/kinvey_orange"
+            android:text="@string/register"
+            android:textColor="@color/ghost_white"
+            android:onClick="registerAccount"
+            android:layout_marginRight="@dimen/button_margin"/>
+
+    <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/etEmailLogin"
+            android:layout_below="@+id/etEmailLogin"
+            android:hint="@string/enter_password"
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/ebony"
+            android:inputType="textPassword" />
+
+    <EditText
+            android:id="@+id/etEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textColorHint="@color/hint_color"
+            android:textColor="@color/ebony"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="@dimen/login_spacing"
+            />
+
+    <ImageButton
+            android:id="@+id/btnLoginTwitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnRegisterAccount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/button_margin"
+            android:contentDescription="@string/login_twitter"
+            android:src="@drawable/sign_in_twitter"
+            android:onClick="launchTwitterLogin"/>
+
+    <ImageButton
+            android:id="@+id/btnLoginFacebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/btnLoginTwitter"
+            android:layout_below="@+id/btnLoginTwitter"
+            android:layout_marginTop="@dimen/button_margin"
+            android:contentDescription="@string/login_facebook"
+            android:src="@drawable/sign_in_facebook"
+            android:onClick="launchFacebookLogin" />
+
+</RelativeLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kinvey.samples.userlogin"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
+    <application
+        android:name="com.kinvey.sample.signin.UserLogin"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name">
+        <activity
+            android:name="com.kinvey.sample.signin.LoginActivity"
+            android:label="@string/login" >
+        </activity>
+		
+        
+        <service android:name="com.kinvey.sample.signin.KinveyAuthenticationService" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" >
+                </action>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+        <activity
+            android:name="com.kinvey.sample.signin.RegisterNewAccountActivity"
+            android:label="@string/register" >
+        </activity>
+        <activity
+            android:name="com.kinvey.sample.signin.FacebookLoginActivity"
+            android:label="@string/login" >
+        </activity>
+        <activity
+            android:name="com.kinvey.sample.signin.TwitterLoginActivity"
+            android:label="login" 
+            android:launchMode="singleInstance" >
+            <intent-filter> 
+                <action android:name="android.intent.action.VIEW"/> 
+                <category android:name="android.intent.category.DEFAULT"/> 
+                <category android:name="android.intent.category.BROWSABLE"/> 
+                <data android:scheme="kinveysociallogin" android:host="twitteractivity"/> 
+			</intent-filter> 
+            >
+        </activity>
+        <activity
+            android:name="com.kinvey.sample.signin.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
