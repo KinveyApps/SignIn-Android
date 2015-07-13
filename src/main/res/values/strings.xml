@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="kinvey_account">Kinvey</string>
+    <string name="app_name">User Login Sample</string>
+    <string name="enter_email">Email Address</string>
+    <string name="enter_password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_first_name">First Name</string>
+    <string name="enter_last_name">Last Name</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="login_twitter">Login with Twitter</string>
+    <string name="login_facebook">Login with Facebook</string>
+    <string name="login_google">Login with Google+</string>
+    <string name="login_linkedin">Login with Linkedin</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="welcome">Welcome!</string>
+    <string name="facebook_app_id">your_facebook_signin</string>
+
+</resources>
