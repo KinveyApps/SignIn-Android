@@ -26,12 +26,19 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.facebook.Session;
-import com.facebook.SessionState;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.kinvey.android.Client;
 import com.kinvey.android.callback.KinveyUserCallback;
 import com.kinvey.java.User;
 import com.textuality.authorized.AuthorizedActivity;
+
+import java.util.Arrays;
 
 /**
  * This class handles Facebook authentication using OAuth 2.  To use this class, an application ID
@@ -45,18 +52,46 @@ public class FacebookLoginActivity extends AccountAuthenticatorActivity {
 	/*
 	 * Facebook App ID - Specific to the applicaiton making the request.
 	 */
-	private static final String FB_APP_ID = "your_facebook_app_key";
-    private static final String RESULT_OPENED = "OPENED";
-	
+
 	private Boolean mConfirmCredentials = false;
 	private Boolean mRequestNewAccount = true;
 	private AccountManager mAccountManager;
 	
 	private ProgressDialog mProgressDialog = null;
 	private static final String PARAM_LOGIN_TYPE_FACEBOOK = "facebook";
+
+	private FacebookSdk facebookSdk;
+    private CallbackManager callbackManager;
+
+    private ProgressDialog loginProgressDialog;
 	/** 
 	 * Kinvey Client
 	 */
+
+    private FacebookCallback<LoginResult> facebookCallback = new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            if (loginProgressDialog != null && loginProgressDialog.isShowing()) {
+                loginProgressDialog.dismiss();
+            }
+            Toast.makeText(FacebookLoginActivity.this, "Logged in with Facebook.",
+                    Toast.LENGTH_LONG).show();
+
+            loginFacebookKinveyUser(loginProgressDialog, loginResult.getAccessToken().getToken());
+        }
+
+        @Override
+        public void onCancel() {
+            Toast.makeText(FacebookLoginActivity.this, "FB login cancelled",
+									Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+            Log.i("Kinvey - SignIn",error.getMessage());
+        }
+    };
+
 	private Client kinveyClient;
 
 	@Override
@@ -74,46 +109,24 @@ public class FacebookLoginActivity extends AccountAuthenticatorActivity {
 		final ProgressDialog progressDialog = ProgressDialog.show(
 				FacebookLoginActivity.this, "Connecting to Facebook",
 				"Logging in with Facebook - just a moment");
-		
+		FacebookSdk.sdkInitialize(this);
 		doFacebookSso(progressDialog, savedInstanceState);
-		
+		callbackManager = CallbackManager.Factory.create();
+
+        LoginManager.getInstance().registerCallback(callbackManager, facebookCallback);
 	}
 	
 	/**
 	 * Facebook SSO Oauth
 	 */
     private void doFacebookSso(final ProgressDialog progressDialog, final Bundle savedInstanceState){
-        try {
-            Session.openActiveSession(this, true, new Session.StatusCallback() {
-				@Override
-				public void call(Session session, SessionState state, Exception exception) {
-					if (exception == null) {
-						if (state.equals(RESULT_CANCELED)) {
-							Toast.makeText(FacebookLoginActivity.this, "FB login cancelled",
-									Toast.LENGTH_LONG).show();
-						} else if (state.isOpened()) {
-							if (progressDialog != null && progressDialog.isShowing()) {
-								progressDialog.dismiss();
-							}
-							Toast.makeText(FacebookLoginActivity.this, "Logged in with Facebook.",
-									Toast.LENGTH_LONG).show();
-
-							loginFacebookKinveyUser(progressDialog, session.getAccessToken());
-						}
-					} else {
-						error(progressDialog, exception.getMessage());
-					}
-				}
-			});
-        } catch (Exception ex) {
-            Log.i("Kinvey - SignIn",ex.getMessage());
-        }
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "user_friends"));
     }
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
     
     /*

@@ -16,12 +16,14 @@ package com.kinvey.sample.signin;
 import com.kinvey.android.Client;
 
 import android.app.Application;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 
 /**
  * Global application class.  Instantiates the KCS Client and sets global constants.
  *
  */
-public class UserLogin extends Application {
+public class UserLogin extends MultiDexApplication {
     private Client service;
 
     // Application Constants
